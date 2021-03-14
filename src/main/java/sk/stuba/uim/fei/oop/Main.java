@@ -15,6 +15,8 @@ public class Main {
         contacts1[0].setFirstname("Mato");
         contact.setFriends(contact4,contact2,contact3);
         contact3.setFirstname("Kovy");
+
+        contact.getFriends()[0].setFirstname("Gabo");
     }
 
 }
