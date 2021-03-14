@@ -1,11 +1,13 @@
 package sk.stuba.uim.fei.oop;
 
-public class Contact {
+import java.util.Arrays;
+
+public abstract class Contact implements Znamy{
     //atributy
     private String firstname;
     private String surname;
 
-    Contact[] friends;
+    protected  Contact[] friends;
     //konstruktor
     public Contact(String firstname,String surname) {
         this.firstname = firstname;
@@ -17,15 +19,7 @@ public class Contact {
         firstname = parts[0];
         surname=parts[1];
     }
-    //kopia
-    public Contact(Contact other){
-        this.firstname = other.firstname;
-        this.surname= other.surname;
-    }
-//staticka metoda
-    public static Contact  parseFromfullName(String fullName){
-        return new Contact(fullName);
-    }
+
 
     public void setFriends(Contact... newfriends){
         this.friends=newfriends;
@@ -39,11 +33,14 @@ public class Contact {
         this.firstname = firstname;
     }
 
-    public Contact[] getFriends() {
-        var friendsClone = new Contact[this.friends.length];
-        for(int i = 0;i<this.friends.length;i++){
-            friendsClone[i] = new Contact(this.friends[i]);
-        }
-        return friendsClone;
+    public String akoText(){
+        return String.format("%s %s", this.firstname, this.surname);
+    }
+
+    public abstract String getZnamy();
+
+    @Override
+    public String toString() {
+        return String.format("Volam sa %s\n%s",this.akoText(), this.getZnamy());
     }
 }
